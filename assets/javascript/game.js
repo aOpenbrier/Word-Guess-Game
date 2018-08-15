@@ -3,7 +3,7 @@ let gameState = {
     isGameStarted: false,
     winCount: 0,
     guessCount: 6,
-    wordsArr: [`example ex`, `another`, `lastly`], //use 2 spaces for multiple words
+    wordsArr: [`example`, `another`, `lastly`], //use 2 spaces for multiple words
     activeWordIndex: 0,
     activeWordArr: [``],
     hiddenWordArr: [``],
@@ -19,6 +19,9 @@ function newWord() {
             if (gameState.activeWordArr[i] !== ' ') {
                 gameState.hiddenWordArr[i] = '_'
             }
+            else{
+                gameState.hiddenWordArr[i] = gameState.activeWordArr[i]
+            }
         }
         document.querySelector('#hidden').innerHTML = gameState.hiddenWordArr.join(`&nbsp;`) //display hidden game word
         gameState.guessCount = 6
@@ -33,6 +36,7 @@ function newWord() {
         gameState.winCount = 0
     }
 }
+
 //on key event:
 document.onkeyup = function (event) {
     console.log(`onkeyup triggered`) //TESTING
@@ -41,19 +45,23 @@ document.onkeyup = function (event) {
             console.log(`tested if it's a letter`)
             if (gameState.lettersGuessed.indexOf(event.key) === -1) { //if it's not already guessed
                 gameState.lettersGuessed.push(event.key)
-                document.querySelector('#letters').innerHTML = gameState.lettersGuessed.join(' - ') //update letters guessed
-                if (gameState.activeWordArr.indexOf(event.key) > -1) {
+                document.querySelector('#letters').innerHTML = gameState.lettersGuessed.join('  ') //update letters guessed
+                if (gameState.activeWordArr.indexOf(event.key) > -1) { 
                     gameState.activeWordArr.forEach(function (letter, i) {
                         if (letter === event.key) {
-                            gameState.hiddenWordArr[i] = letter
-                            document.querySelector('#hidden').innerHTML = gameState.hiddenWordArr.join(`&nbsp;`) //display hidden game word
-                            console.log(`Key pressed: '${event.key}' was found in array index ${i}`) //TESTING
-                            //check if game is complete
-                            //document.querySelector('#message').innerHTML = 'You Won!'
-                            //start new game
-                            //add 1 to win count, gameState.winCount++
+                            gameState.hiddenWordArr[i] = gameState.activeWordArr[i]
                         }
                     })
+                    document.querySelector('#hidden').innerHTML = gameState.hiddenWordArr.join(`&nbsp;`) //display hidden game word
+                    console.log(`active '${gameState.activeWordArr}'`)
+                    console.log(`hidden '${gameState.hiddenWordArr}'`)
+                    console.log(`index of underscore: ${gameState.hiddenWordArr.indexOf('_')}`)
+                    if (gameState.hiddenWordArr.indexOf('_') === -1) {
+                        document.querySelector('#message').innerHTML = 'You won!'
+                        gameState.winCount++
+                        document.querySelector('#wincount').innerHTML = gameState.winCount
+                        newWord()
+                    }
                 }
                 else {
                     gameState.guessCount--
