@@ -11,21 +11,25 @@
 <body>
     <h1>Word Game</h1>
 
-    <div id="message"></div>
+    <div id="message">Press any key to start</div>
     <div id="grid">
         <div class="hidden">
-            <span id="hidden"></span>
-            <span id="wincount"></span>
+            <h2></h2>
+            <h2 id="hidden">_</h2>
+            <h3>Wins:</h3>
+            <h3 id="wincount">0</h3>
         </div>
         <div class="guesscount">
-            <span id="guesscount"></span>
+            <h3>Wrong Guesses Remaining</h3>
+            <h3 id="guesscount">8</h3>
         </div>
         <div class="letters">
-            <span id="letters"></span>
+            <h3>Letters Guessed</h3>
+            <h3 id="letters">&nbsp;</h3>
         </div>
 
     </div>
-<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script> -->
 <script src="assets/javascript/game.js"></script>
 </body>
 </html>
