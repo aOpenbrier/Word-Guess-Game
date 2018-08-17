@@ -58,7 +58,7 @@ document.onkeyup = function (event) {
                         }
                     })
                     if (gameState.hiddenWordArr.indexOf('_') === -1) { //if there aren't any underscores remaining
-                        document.querySelector('#message').innerHTML = `You won! '${gameState.activeWordArr.join('')}' is correct`
+                        document.querySelector('#message').innerHTML = `You won! '${gameState.activeWordArr.join('')}' is correct. Next word:`
                         gameState.winCount++
                         newWord()
                     }
