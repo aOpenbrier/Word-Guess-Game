@@ -7,11 +7,11 @@ body{
 .title{
 margin: 5px;
 padding: 5px;
-font-weight: 700;
 color: rgba(255,255,255, 0.5);
-
 }
-
+h1{
+    font-weight: 900;
+}
 #grid{
     display: grid;
     width: 90%;
