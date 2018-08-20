@@ -2,7 +2,7 @@
 let gameState = {
     isGameStarted: false,
     winCount: 0,
-    guessCount: 10,
+    guessCount: 8,
     wordsArr: [`CIRCUS`, `PETER PAUL AND MARY`, `STRONGER`, `MAKE ME OOH`, `EVERYTIME`, `IF YOU SEEK AMY`, `FEMME FATALE`, `GIMME MORE`, `WOMANIZER`, `TOXIC`, `SLUMBER PARTY`, `OOPS I DID IT AGAIN`, `BLACKOUT`, `MY PREROGATIVE`, `BREAK THE ICE`, `LUCKY`, `OVER PROTECTED`],
     activeWordIndex: 0,
     activeWordArr: [],
@@ -29,7 +29,7 @@ function newWord() {
                 gameState.hiddenWordArr[i] = `&nbsp;`
             }
         }
-        gameState.guessCount = 10
+        gameState.guessCount = 8
         gameState.lettersGuessed = ['&nbsp;']
         gameState.activeWordIndex++ //ready for next round
     }
@@ -56,6 +56,7 @@ document.onkeyup = function (event) {
                             gameState.hiddenWordArr[i] = gameState.activeWordArr[i]
                         }
                     })
+                    document.querySelector('#message').innerHTML = `${keyPressed} was found!</h4><h4> Hit a key, baby, one more time`
                     if (gameState.hiddenWordArr.indexOf('_') === -1) { //if there aren't any underscores remaining    
                         document.querySelector('#message').innerHTML = `You won! '${gameState.activeWordArr.join('')}' is correct. Next word:`
                         gameState.winCount++
@@ -71,7 +72,7 @@ document.onkeyup = function (event) {
                 }
             }
             else {
-                document.querySelector('#message').innerHTML = `You already tried that. Guess again`
+                document.querySelector('#message').innerHTML = `Oops.. you did it again.</h4><h4>You already tried $[keyPressed}. Try a new letter`
             }
         }
     }
