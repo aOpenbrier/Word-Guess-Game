@@ -72,7 +72,7 @@ document.onkeyup = function (event) {
                 }
             }
             else {
-                document.querySelector('#message').innerHTML = `Oops.. you did it again.</h4><h4>You already tried $[keyPressed}. Try a new letter`
+                document.querySelector('#message').innerHTML = `Oops.. you did it again.</h4><h4>You already tried ${keyPressed}. Try a new letter`
             }
         }
     }
