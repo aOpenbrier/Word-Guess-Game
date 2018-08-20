@@ -3,7 +3,7 @@ let gameState = {
     isGameStarted: false,
     winCount: 0,
     guessCount: 10,
-    wordsArr: [`CIRCUS`, `STRONGER`, `MAKE ME OOH`, `EVERYTIME`, `IF YOU SEEK AMY`, `FEMME FATALE`, `GIMME MORE`, `WOMANIZER`, `TOXIC`, `SLUMBER PARTY`, `OOPS I DID IT AGAIN`, `BLACKOUT`, `MY PREROGATIVE`, `BREAK THE ICE`, `LUCKY`, `OVER PROTECTED`], //use 2 spaces for multiple words
+    wordsArr: [`CIRCUS`, `PETER PAUL AND MARY`, `STRONGER`, `MAKE ME OOH`, `EVERYTIME`, `IF YOU SEEK AMY`, `FEMME FATALE`, `GIMME MORE`, `WOMANIZER`, `TOXIC`, `SLUMBER PARTY`, `OOPS I DID IT AGAIN`, `BLACKOUT`, `MY PREROGATIVE`, `BREAK THE ICE`, `LUCKY`, `OVER PROTECTED`],
     activeWordIndex: 0,
     activeWordArr: [],
     hiddenWordArr: [],
@@ -34,7 +34,7 @@ function newWord() {
         gameState.activeWordIndex++ //ready for next round
     }
     else {
-        document.querySelector('#message').innerHTML = `That's all for now. Press any key to start over`
+        document.querySelector('#message').innerHTML = `Thank you for playing. You got ${gameState.winCount} out of ${gameState.wordsArr.length} words. </h4><h4> Press any key to start over`
         gameState.isGameStarted = false
         gameState.winCount = 0
         gameState.activeWordIndex = 0
@@ -46,9 +46,8 @@ function newWord() {
 //on key event:
 document.onkeyup = function (event) {
     if (gameState.isGameStarted) { //if game was started
-        if (/[a-z]/i.test(event.key)) { //if key pressed was a letter
             let keyPressed=event.key.toUpperCase()
-            console.log(keyPressed)
+        if (keyPressed >= 'A' && keyPressed <= 'Z' && keyPressed.length === 1) { //if key pressed was a letter
             if (gameState.lettersGuessed.indexOf(keyPressed) === -1) { //if it hasn't been guessed yet
                 gameState.lettersGuessed.push(keyPressed)
                 if (gameState.activeWordArr.indexOf(keyPressed) > -1) { //if letter is in the array at all
@@ -57,7 +56,7 @@ document.onkeyup = function (event) {
                             gameState.hiddenWordArr[i] = gameState.activeWordArr[i]
                         }
                     })
-                    if (gameState.hiddenWordArr.indexOf('_') === -1) { //if there aren't any underscores remaining
+                    if (gameState.hiddenWordArr.indexOf('_') === -1) { //if there aren't any underscores remaining    
                         document.querySelector('#message').innerHTML = `You won! '${gameState.activeWordArr.join('')}' is correct. Next word:`
                         gameState.winCount++
                         newWord()
