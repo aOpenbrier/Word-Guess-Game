@@ -13,6 +13,7 @@ let gameState = {
         document.querySelector('#guesscount').innerHTML = this.guessCount
         document.querySelector('#letters').innerHTML = this.lettersGuessed.join('&nbsp;')
         document.querySelector('#wincount').innerHTML = this.winCount
+        document.querySelector('#input').value = ''
     }
 }
 
