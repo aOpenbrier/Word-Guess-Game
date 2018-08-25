@@ -1,4 +1,8 @@
+html{
+    min-height: 100vh;
+}
 body{
+    min-height:100vh;
     text-align: center;
     background: white url("../images/britneyglory.jpg") no-repeat fixed center top; 
     background-size: cover;
