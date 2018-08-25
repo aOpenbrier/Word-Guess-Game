@@ -8,7 +8,7 @@ let gameState = {
     activeWordArr: [],
     hiddenWordArr: [],
     lettersGuessed: [],
-    updateValues(){
+    updateValues() {
         document.querySelector('#hidden').innerHTML = this.hiddenWordArr.join(`&nbsp;`)
         document.querySelector('#guesscount').innerHTML = this.guessCount
         document.querySelector('#letters').innerHTML = this.lettersGuessed.join('&nbsp;')
@@ -18,7 +18,6 @@ let gameState = {
 }
 
 function newWord() {
-    console.log(`ran newWord function`)
     if (gameState.activeWordIndex < gameState.wordsArr.length) { //if we're not out of words to play
         gameState.activeWordArr = gameState.wordsArr[gameState.activeWordIndex].split('')
         gameState.hiddenWordArr = ['']
@@ -26,7 +25,7 @@ function newWord() {
             if (gameState.activeWordArr[i] !== ' ') {
                 gameState.hiddenWordArr[i] = '_'
             }
-            else{
+            else {
                 gameState.hiddenWordArr[i] = `&nbsp;`
             }
         }
@@ -46,8 +45,14 @@ function newWord() {
 
 //on key event:
 document.onkeyup = function (event) {
+    let keyPressed = ''
     if (gameState.isGameStarted) { //if game was started
-            let keyPressed=event.key.toUpperCase()
+        if (document.querySelector('#input').value !== '') {
+            keyPressed = document.querySelector('#input').value.toUpperCase()
+        }
+        else {
+            keyPressed = event.key.toUpperCase()
+        }
         if (keyPressed >= 'A' && keyPressed <= 'Z' && keyPressed.length === 1) { //if key pressed was a letter
             if (gameState.lettersGuessed.indexOf(keyPressed) === -1) { //if it hasn't been guessed yet
                 gameState.lettersGuessed.push(keyPressed)
@@ -76,6 +81,8 @@ document.onkeyup = function (event) {
                 document.querySelector('#message').innerHTML = `Oops.. you did it again.</h4><h4>You already tried ${keyPressed}. Try a new letter`
             }
         }
+
+
     }
     else { //game hasn't started
         gameState.isGameStarted = true
